@@ -17,14 +17,34 @@ In fact convolutional layers do not require a fixed image size and it can genera
 
 On the other hand,the fixed size constraint comes only from the fully-connected layers.
 
-## The Spatial Pyramid Pooling Layer
-(reserve)
+## The Spatial Pyramid Pooling (SPP) Layer
+
+*Spatial Pyramid Pooling* another pooling method conpared the normal pooling layer (eg. 2x2 maximum pooling layer).
+
+The output feature map size (image size) of normal pooling layer depends on the input feature map size. Normally it appoint the maximum value of 4 Neighboring pixels at the output pixel value. As a consequence, it will reduce the feature map size with little information loss.
+
+For *Spatial Pyramid Pooling*, it consider the output feature number. It also will reduce the feature map size, but the output size depends on the SPP layer. As a figure shown below, there are three spp filters(4x4, 2x2, 1x1).
+
+At the first layer, it divide the whole input feature map into 16 part. Provided the length and width of feature map is W and H. The length and width of the bins are (L/4, W/4).
+
+At the second layer, it divide the whole input feature map into 4 part. The length and width of the bins are (L/2, W/2).
+
+At the third layer, The length and width of the bins are (L, W).
+
+If we use maximum Spatial Pyramid Pooling, the filter will get the maximum value of each bins' pixels to represent each bins. So the output feature number of first layer is 16, the output feature number of second layer is 4, and the third is 1. 
+
+No matter what size of the input feature map, it will output the fixed number of feature which is very important for the fully connected layer.
+
+![SPP](/home/binzhang/Pictures/SPP.png)
+
 
 ## Experiment part 
 
 In practice the GPU implementations (such as *cuda-convnet* and  *Caffe*) are preferably run on fixed input images.
 
 ## Multi-size training 
+
+![tfcnn](/home/binzhang/Pictures/tfcnn.png)
 
 During traing they implement the varying-input-size SPP-net by two fixed-size networks that share parameters.
 
@@ -45,15 +65,27 @@ have the same structures as the corresponding baseline models, whereas the pooli
 
 Their results using multi-size training. The training sizes are 224 and 180, while the testing size is still 224. 
 
- ### Full-image Representations Improve Accuracy
+### Full-image Representations Improve Accuracy
+
+## SPP-NET FOR OBJECT DETECTION
+
+For Object Detection, we also need *Selective Search* method to extract candidate windows from the input image.
+
+### Training part 
+
+The CNN part and the SVM part is trained separately.
+
+CNN part is trained to extract the feature of the input image. For those image classification and object detection the weight of the CNN layer is same. That is because the CNN is to get the feature which is similar to it's core.
+
+Ground-truth window is used to generate possitive samples for SVM training.
+
+
+After that we use spatial pyramid pooling on those window. Then we 
+
+The ground-truth windows is used to generate the positive samples. The negative samples are those overlapping a positive window by at most 30%. 
 
 
 
-
-
-
- intersection-over-union (IoU) 
-
- Q1: How Spatial Pyramid Pooling Layer works?
+ by the way, IOU means intersection-over-u  nion
 
  Q2: How the ground-truth window used?
