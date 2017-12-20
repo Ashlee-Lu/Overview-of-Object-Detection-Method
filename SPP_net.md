@@ -2,7 +2,7 @@
 
 ## **Brief** 
 
-Traditional CNNs require a fixed input size, that is the reason why it need crop/warp images fisrt. This requirement is “artificial” and may reduce the recognition accuracy for the images or sub-images of an arbitrary size/scale. 
+Traditional CNNs require a fixed input image size, that is the reason why it need crop/warp images fisrt. This requirement is “artificial” and may reduce the recognition accuracy for the images or sub-images of an arbitrary size/scale. 
 ### **Traditional CNNs**
 image -> crop/warp -> conv layers -> fc layers -> output
 ### **SPP-net**
