@@ -36,7 +36,7 @@ If we use maximum Spatial Pyramid Pooling, the filter will get the maximum value
 
 No matter what size of the input feature map, it will output the fixed number of feature which is very important for the fully connected layer.
 
-![SPP](/home/binzhang/Pictures/SPP.png)
+![SPP](https://github.com/ideaRunner/Images/blob/master/sppnet/SPP.png)
 
 
 ## **Experiment part**
@@ -45,7 +45,7 @@ In practice the GPU implementations (such as *cuda-convnet* and  *Caffe*) are pr
 
 ## **Multi-size training** 
 
-![tfcnn](/home/binzhang/Pictures/tfcnn.png)
+![tfcnn](https://github.com/ideaRunner/Images/blob/master/sppnet/tfcnn.png)
 
 During traing they implement the varying-input-size SPP-net by two fixed-size networks that share parameters.
 
@@ -85,4 +85,4 @@ After that they use spatial pyramid pooling on those window and get the feature 
 ### **Testing Part**
 Input image -> CNNs -> generate windows -> SPP layers -> SVM
 
-![tfcnn](/home/binzhang/Pictures/SPP_Ob_Det.png)
+![tfcnn](https://github.com/ideaRunner/Images/blob/master/sppnet/SPP_Ob_Det.png)
