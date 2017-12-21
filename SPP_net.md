@@ -45,8 +45,6 @@ In practice the GPU implementations (such as *cuda-convnet* and  *Caffe*) are pr
 
 ## **Multi-size training** 
 
-![tfcnn](https://github.com/ideaRunner/Images/blob/master/sppnet/tfcnn.png)
-
 During traing they implement the varying-input-size SPP-net by two fixed-size networks that share parameters.
 
 (Share parameters means that the weight of the conv layer and fc layer is same, just the define of the input image size of conv layer is different)
