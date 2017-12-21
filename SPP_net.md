@@ -84,3 +84,9 @@ After that they use spatial pyramid pooling on those window and get the feature 
 Input image -> CNNs -> generate windows -> SPP layers -> SVM
 
 ![tfcnn](https://github.com/ideaRunner/Images/blob/master/sppnet/SPP_Ob_Det.png)
+
+## Shortcoming
+
+SPPnet also has notable drawbacks. Like R-CNN, training is a multi-stage pipeline that involves extracting features, fine-tuning a network with log loss, training SVMs,
+and finally fitting bounding-box regressors. Features are also written to disk. But unlike R-CNN, the fine-tuning algorithm proposed in cannot update the convolutional
+layers that precede the spatial pyramid pooling. Unsurprisingly, this limitation (fixed convolutional layers) limits the accuracy of very deep networks.
